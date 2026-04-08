@@ -3,13 +3,33 @@ class Ficha {
     #sesiones;
     #numSesiones;
 
-    set nombre (value){
-        if(typeof  value === "string" || value.length === 0){
-            console.log('Introduce un nombre válido');
-        }else {
-            this.#nombre = value;
-        }
+    constructor (nombre){
+        this.nombre = nombre;
+        this.sesiones = [];
+        this.numSesiones = 0;
     }
 
-    set sesiones (value)
+    anotar (km){
+        this.sesiones[this.numSesiones]=km;
+        this.numSesiones++;
+    }
+
+    media(){
+        let suma = 0;
+        for(let i = 0; i<this.numSesiones; i++){
+            suma+=this.sesiones[i];
+        }
+        return suma / this.numSesiones;
+    }
 }
+
+let ficha1 = new Ficha('Ramon');
+
+ficha1.anotar(8);
+ficha1.anotar(14);
+ficha1.anotar(6);
+
+console.log("Sesiones anotadas " + ficha1.numSesiones 
+                    + "\nMedia Km: " + ficha1.media()
+);
+
